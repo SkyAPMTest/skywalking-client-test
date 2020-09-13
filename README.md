@@ -1,2 +1,1 @@
-# skywalking-client-test
-skywalking-client-js test demo
+Apache SkyWalking Client Test
