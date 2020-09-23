@@ -32,12 +32,12 @@ module.exports = {
     })
   ],
   devServer: {
-    proxy: {
-      '/browser/*': {
-        target: 'http://hz.zhangwei.asia:52800',
-        changeOrigin: true,
-      },
-    },
+    // proxy: {
+    //   '/browser/*': {
+    //     target: 'http://123333',
+    //     changeOrigin: true,
+    //   },
+    // },
     contentBase: './dist',
     hot: true
   }
