@@ -19,9 +19,9 @@ import ClientMonitor from 'skywalking-client-js';
 import Vue from 'vue';
 
 ClientMonitor.register({
-  collector: 'http://localhost:8888',
+  collector: '',
   service: 'test-ui',
-  pagePath: 'http://localhost:8080/',
+  pagePath: 'index.html',
   serviceVersion: 'v1.0.0',
   vue: Vue,
   useFmp: true,

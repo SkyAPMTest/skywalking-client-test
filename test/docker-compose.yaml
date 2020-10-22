@@ -1,0 +1,33 @@
+version: "3"
+services:
+  selenium-hub:
+    image: selenium/hub:4.0.0-alpha-7-prerelease-20201009
+    container_name: selenium-hub
+
+  chrome:
+    image: selenium/node-chrome:4.0.0-alpha-7-prerelease-20201009
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+
+  test-ui:
+    build:
+      context: ../
+      dockerfile: test/Dockerfile-test-ui
+    depends_on:
+      - chrome
+    environment:
+      OAP_SERVER: ${OAP_SERVER}
+
+  generate-traffic:
+    build:
+      context: ../
+      dockerfile: test/Dockerfile-generate-traffic
+    depends_on:
+      - test-ui
+    restart: on-failure
