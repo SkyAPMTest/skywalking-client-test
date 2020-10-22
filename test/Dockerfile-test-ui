@@ -1,0 +1,8 @@
+FROM nginx:1.19
+
+COPY dist /etc/nginx/html/
+COPY test/docker-entrypoint.sh /docker-entrypoint.sh
+
+RUN chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
