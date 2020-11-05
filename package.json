@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "webpack",
+    "rebuild": "rm -rf ./node_modules && rm -rf ./lib && npm install && webpack",
     "start": "webpack-dev-server",
     "server": "node server.js"
   }
