@@ -1,25 +1,7 @@
-Apache SkyWalking Client Test
+Apache SkyWalking Client JS Test
+==========
 
-# Usage
-
-* Install  
-the skywalking-client-js runtime library is available at npm
-
-```shell script
-npm install skywalking-client-js --save
-```
-
-* Init SDK
-
-```typescript
-import ClientMonitor from 'skywalking-client-js';
-
-ClientMonitor.register({
-  service: 'test-ui',
-  pagePath: 'index.html',
-  serviceVersion: 'v1.0.0',
-});
-```
+This project provides test [skywalking-client-js](https://github.com/apache/skywalking-client-js) necessary environment, you could just simple use it to see the data SkyWalking collected and how SkyWalking visualizes on the UI
 
 # Quick start
 
