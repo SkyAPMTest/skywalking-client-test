@@ -19,11 +19,11 @@ import ClientMonitor from 'skywalking-client-js';
 import Vue from 'vue';
 
 ClientMonitor.register({
-  service: 'test-ui',
-  pagePath: 'http://localhost:8080/',
-  serviceVersion: 'v1.0.0',
-  vue: Vue,
-  useFmp: true,
+    service: 'test-ui',
+    pagePath: 'index.html',
+    serviceVersion: 'v1.0.0',
+    vue: Vue,
+    useFmp: true,
 });
 // promise error
 // function foo() {
@@ -64,33 +64,33 @@ ClientMonitor.register({
 
 // vue error
 new Vue({
-  data: {
-    name: "chen",
-    age: 18,
-    message: "--------------------------------",
-    src3:"https://pic.xiaohuochai.site/blog/chromePerformance2_error.png",
-    src4:"",
-},
-  methods: {
-    async click() {
-      this.name = 'click'
-      await timeout();
+    data: {
+        name: "chen",
+        age: 18,
+        message: "--------------------------------",
+        src3: "https://pic.xiaohuochai.site/blog/chromePerformance2_error.png",
+        src4: "",
     },
-    async click1() {
-      this.name = 'click1'
-      throw {msg: 'async function error',status: 1000};
+    methods: {
+        async click() {
+            this.name = 'click'
+            await timeout();
+        },
+        async click1() {
+            this.name = 'click1'
+            throw {msg: 'async function error', status: 1000};
+        },
+        test() {
+            throw {
+                msg: 'vue error',
+                status: 3000
+            }
+        }
     },
-    test() {
-      throw {
-        msg: 'vue error',
-        status: 3000
-      }
+    created() {
+        this.click1();
+        this.test();
     }
-  },
-  created() {
-    this.click1();
-    this.test();
-  }
 })
 // // mock
 // function timeout() {

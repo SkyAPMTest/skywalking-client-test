@@ -34,7 +34,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/browser/*': {
-        target: 'http://hz.zhangwei.asia:52800',
+        target: 'http://123333',
         changeOrigin: true,
       },
       '/graphql': {

@@ -1,5 +1,5 @@
 {
-  "name": "skywalking-client-js",
+  "name": "skywalking-client-test",
   "version": "1.0.0",
   "description": "js monitor",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "express": "^4.17.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
-    "skywalking-client-js": "^0.0.7",
+    "skywalking-client-js": "^0.1.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
     "vue": "^2.6.11",
@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "webpack",
+    "rebuild": "rm -rf ./node_modules && rm -rf ./lib && npm install && webpack",
     "start": "webpack-dev-server",
     "server": "node server.js"
   }
