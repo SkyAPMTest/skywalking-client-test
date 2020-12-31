@@ -37,6 +37,10 @@ module.exports = {
         target: 'http://hz.zhangwei.asia:52800',
         changeOrigin: true,
       },
+      '/graphql': {
+        target: 'http://demo.skywalking.apache.org',
+        changeOrigin: true,
+      }
     },
     contentBase: './dist',
     hot: true

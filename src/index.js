@@ -107,3 +107,15 @@ new Vue({
 // resource errors
 // const img = new Image(10, 10);
 // img.src = 'test.jpg';
+fetch('/graphql', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    query: "query queryServices($duration: Duration!,$keyword: String!) {\n    services: getAllServices(duration: $duration, group: $keyword) {\n      key: id\n      label: name\n      group\n    }\n  }",
+    variables: {"duration":{"start":"2020-12-23 1503","end":"2020-12-23 1603","step":"MINUTE"},"keyword":""},
+  })
+}).then((data) => {
+  console.log(data);
+})
