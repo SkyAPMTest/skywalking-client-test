@@ -28,6 +28,14 @@ app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath
 }));
 
+app.post('/peppa', function (req, res) {
+  res.sendFile(__dirname + '/peppa.jpg');
+});
+
+app.post('/test', function (req, res) {
+  res.send({data: 'hello test'});
+});
+
 // Serve the files on port 3000.
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!\n');
