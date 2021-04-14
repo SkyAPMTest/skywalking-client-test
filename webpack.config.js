@@ -19,7 +19,7 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ]
   },
   output: {
-    filename: 'monitor.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
@@ -40,9 +40,13 @@ module.exports = {
       '/graphql': {
         target: 'http://demo.skywalking.apache.org',
         changeOrigin: true,
+      },
+      '/static/*': {
+        target: 'http://kekek.cc',
+        changeOrigin: true,
       }
     },
     contentBase: './dist',
-    hot: true
+    hot: false,
   }
 };

@@ -64,58 +64,62 @@ ClientMonitor.register({
 
 // vue error
 new Vue({
-    data: {
-        name: "chen",
-        age: 18,
-        message: "--------------------------------",
-        src3: "https://pic.xiaohuochai.site/blog/chromePerformance2_error.png",
-        src4: "",
-    },
     methods: {
-        async click() {
-            this.name = 'click'
-            await timeout();
-        },
-        async click1() {
-            this.name = 'click1'
-            throw {msg: 'async function error', status: 1000};
-        },
-        test() {
-            throw {
-                msg: 'vue error',
-                status: 3000
-            }
+      async click1() {
+        throw {message: 'async function error', stack: 'click1 error'};
+      },
+      async test() {
+        throw {
+          message: 'vue test',
+          stack: 'vue error'
         }
+      }
     },
     created() {
-        this.click1();
-        this.test();
+      this.test();
+      this.click1();
+    },
+    config: {
+      errorHandler(error) {
+        console.log(error);
+      }
     }
 })
+
 // // mock
 // function timeout() {
 //   return new Promise((resolve, reject) => {
 //     setTimeout(() => Math.random() > 0.5 ?
 //       resolve() :
 //       reject({
-//         msg: '随机的异步错误',
-//         status: 2000
+//         message: '随机的异步错误',
+//         stack: 2000
 //       }), 500)
 //   })
 // }
-
+// timeout();
 // resource errors
 // const img = new Image(10, 10);
 // img.src = 'test.jpg';
-fetch('/graphql', {
+// 
+fetch('/peppa', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify({
-    query: "query queryServices($duration: Duration!,$keyword: String!) {\n    services: getAllServices(duration: $duration, group: $keyword) {\n      key: id\n      label: name\n      group\n    }\n  }",
-    variables: {"duration":{"start":"2020-12-23 1503","end":"2020-12-23 1603","step":"MINUTE"},"keyword":""},
-  })
-}).then((data) => {
-  console.log(data);
 })
+.then(response => response.body)
+.then(body => {
+  const reader = body.getReader();
+  console.log(reader);
+});
+
+const xhr = new XMLHttpRequest();
+xhr.open('post', '/test', true);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status < 400) {
+    console.log('Report Successfully');
+  }
+};
+xhr.send();
