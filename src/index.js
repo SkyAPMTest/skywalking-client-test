@@ -19,24 +19,29 @@ import ClientMonitor from 'skywalking-client-js';
 import Vue from 'vue';
 
 ClientMonitor.register({
+    collector: 'http://hz.zhangwei.asia:32800',
     service: 'test-ui',
     pagePath: 'index.html',
     serviceVersion: 'v1.0.0',
     vue: Vue,
     useFmp: true,
 });
-// promise error
-// function foo() {
-//   Promise.reject('Hello, Promise!');
-// }
-// foo();
-// fetch('http://example.com/movies')
-//   .then(function(response) {
-//     return response.json();
-//   })
-//   .then(function(myJson) {
-//     console.log(myJson);
-//   });
+// // promise error
+function foo() {
+  Promise.reject({
+    message: 'promise test',
+    stack: 'promise error'
+  });
+}
+foo();
+
+fetch('http://example.com/movies')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    console.log(myJson);
+  });
 
 // // ajax error
 // function loadXMLDoc() {
@@ -57,10 +62,6 @@ ClientMonitor.register({
 //   xmlhttp.send();
 // }
 // loadXMLDoc();
-
-// js error
-// const ss = null;
-// ss.v;
 
 // vue error
 new Vue({
@@ -86,40 +87,44 @@ new Vue({
     }
 })
 
-// // mock
-// function timeout() {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => Math.random() > 0.5 ?
-//       resolve() :
-//       reject({
-//         message: '随机的异步错误',
-//         stack: 2000
-//       }), 500)
-//   })
-// }
-// timeout();
+// mock
+function timeout() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => Math.random() > 0.5 ?
+      resolve() :
+      reject({
+        message: 'timeout test',
+        stack: 2000
+      }), 500)
+  })
+}
+timeout();
 // resource errors
 // const img = new Image(10, 10);
 // img.src = 'test.jpg';
 // 
-fetch('/peppa', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-})
-.then(response => response.body)
-.then(body => {
-  const reader = body.getReader();
-  console.log(reader);
-});
+// fetch('/peppa', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+// })
+// .then(response => response.body)
+// .then(body => {
+//   const reader = body.getReader();
+//   console.log(reader);
+// });
 
-const xhr = new XMLHttpRequest();
-xhr.open('post', '/test', true);
-xhr.setRequestHeader('Content-Type', 'application/json');
-xhr.onreadystatechange = function () {
-  if (xhr.readyState === 4 && xhr.status < 400) {
-    console.log('Report Successfully');
-  }
-};
-xhr.send();
+// const xhr = new XMLHttpRequest();
+// xhr.open('post', '/test', true);
+// xhr.setRequestHeader('Content-Type', 'application/json');
+// xhr.onreadystatechange = function () {
+//   if (xhr.readyState === 4 && xhr.status < 400) {
+//     console.log('Report Successfully');
+//   }
+// };
+// xhr.send();
+
+// js error
+const ss = null;
+ss.v;
