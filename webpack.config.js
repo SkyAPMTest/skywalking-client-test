@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   mode: 'development',
   module: {
     rules: [
@@ -41,10 +41,6 @@ module.exports = {
         target: 'http://demo.skywalking.apache.org',
         changeOrigin: true,
       },
-      '/static/*': {
-        target: 'http://kekek.cc',
-        changeOrigin: true,
-      }
     },
     contentBase: './dist',
     hot: false,
