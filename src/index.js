@@ -19,7 +19,7 @@ import ClientMonitor from 'skywalking-client-js';
 import Vue from 'vue';
 
 ClientMonitor.register({
-    collector: 'http://hz.zhangwei.asia:32800',
+    collector: 'http://127.0.0.1:8080',
     service: 'test-ui',
     pagePath: 'index.html',
     serviceVersion: 'v1.0.0',
