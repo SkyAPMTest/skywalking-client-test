@@ -50,6 +50,8 @@ services:
       - oap
     links:
       - oap
+    ports:
+      - 80:80
     environment:
       OAP_SERVER: "oap:12800"
 
