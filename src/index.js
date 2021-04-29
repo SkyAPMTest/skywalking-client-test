@@ -19,7 +19,6 @@ import ClientMonitor from 'skywalking-client-js';
 import Vue from 'vue';
 
 ClientMonitor.register({
-    collector: 'http://127.0.0.1:8080',
     service: 'test-ui',
     pagePath: 'index.html',
     serviceVersion: 'v1.0.0',
@@ -65,26 +64,26 @@ fetch('http://example.com/movies')
 
 // vue error
 new Vue({
-    methods: {
-      async click1() {
-        throw {message: 'async function error', stack: 'click1 error'};
-      },
-      async test() {
-        throw {
-          message: 'vue test',
-          stack: 'vue error'
-        }
-      }
+  methods: {
+    async click1() {
+      throw {message: 'async function error', stack: 'click1 error'};
     },
-    created() {
-      this.test();
-      this.click1();
-    },
-    config: {
-      errorHandler(error) {
-        console.log(error);
+    async test() {
+      throw {
+        message: 'vue test',
+        stack: 'vue error'
       }
     }
+  },
+  created() {
+    this.test();
+    this.click1();
+  },
+  config: {
+    errorHandler(error) {
+      console.log(error);
+    }
+  }
 })
 
 // mock
@@ -115,15 +114,28 @@ timeout();
 //   console.log(reader);
 // });
 
-// const xhr = new XMLHttpRequest();
-// xhr.open('post', '/test', true);
-// xhr.setRequestHeader('Content-Type', 'application/json');
-// xhr.onreadystatechange = function () {
-//   if (xhr.readyState === 4 && xhr.status < 400) {
-//     console.log('Report Successfully');
-//   }
-// };
-// xhr.send();
+const xhr = new XMLHttpRequest();
+xhr.open('post', '/test', true);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4 && xhr.status < 400) {
+    console.log('Report Successfully');
+  }
+};
+xhr.send();
+
+fetch('/graphql', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    query: "query queryServices($duration: Duration!,$keyword: String!) {\n    services: getAllServices(duration: $duration, group: $keyword) {\n      key: id\n      label: name\n      group\n    }\n  }",
+    variables: {"duration":{"start":"2020-12-23 1503","end":"2020-12-23 1603","step":"MINUTE"},"keyword":""},
+  })
+}).then((data) => {
+  console.log(data);
+})
 
 // js error
 const ss = null;

@@ -24,6 +24,9 @@ http {
     location /browser {
         proxy_pass http://${OAP_SERVER};
     }
+    location /v3 {
+        proxy_pass http://${OAP_SERVER};
+    }
   }
 }
 EOF
