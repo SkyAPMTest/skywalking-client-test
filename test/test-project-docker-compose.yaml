@@ -23,6 +23,7 @@ services:
       - chrome
     environment:
       OAP_SERVER: ${OAP_SERVER}
+      PROJECT_A: ${PROJECT_A}
 
   generate-traffic:
     build:

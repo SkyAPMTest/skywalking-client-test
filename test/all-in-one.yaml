@@ -5,7 +5,7 @@ services:
     container_name: oap
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "/skywalking/bin/swctl ch"]
+      test: [ "CMD-SHELL", "/skywalking/bin/swctl ch" ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -41,6 +41,25 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
 
+  provider:
+    build:
+      context: .
+      dockerfile: Dockerfile.projectA
+    expose:
+      - 9091
+    environment:
+      SW_AGENT_COLLECTOR_BACKEND_SERVICES: oap:11800
+      SW_AGENT_INSTANCE: provider-instance
+    depends_on:
+      oap:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "bash", "-c", "cat < /dev/null > /dev/tcp/127.0.0.1/9091" ]
+      interval: 5s
+      timeout: 60s
+      retries: 120
+    entrypoint: [ 'python3', '/provider.py' ]
+
   test-ui:
     build:
       context: ../
@@ -48,12 +67,14 @@ services:
     depends_on:
       - chrome
       - oap
+      - provider
     links:
       - oap
     ports:
       - 80:80
     environment:
       OAP_SERVER: "oap:12800"
+      PROJECT_A: "provider:9091"
 
   generate-traffic:
     build:
