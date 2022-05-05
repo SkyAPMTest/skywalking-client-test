@@ -10,7 +10,7 @@
     "express": "^4.17.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
-    "skywalking-client-js": "^0.4.0",
+    "skywalking-client-js": "^0.8.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
     "vue": "^2.6.11",
