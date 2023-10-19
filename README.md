@@ -9,7 +9,7 @@ The test project generates traffic automatically through `selenium`.
 
 **Requests: [docker](https://docs.docker.com/install/), [docker-compose](https://docs.docker.com/compose/install/).**
 
-1. Run the SkyWaling and test project
+1. Run the SkyWalking and test project
 
 ```shell script
 npm run rebuild
