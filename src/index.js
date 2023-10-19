@@ -19,11 +19,11 @@ import ClientMonitor from 'skywalking-client-js';
 import Vue from 'vue';
 
 ClientMonitor.register({
-    service: 'test-ui',
-    pagePath: 'index.html',
-    serviceVersion: 'v1.0.0',
-    vue: Vue,
-    useFmp: true,
+  service: 'test-ui',
+  pagePath: 'index.html',
+  serviceVersion: 'v1.0.0',
+  vue: Vue,
+  useFmp: true
 });
 // // promise error
 function foo() {

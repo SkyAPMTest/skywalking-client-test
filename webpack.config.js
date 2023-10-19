@@ -41,6 +41,7 @@ module.exports = {
         changeOrigin: true,
       },
     },
-    hot: true,
+    static: false,
+    hot: false,
   }
 };
