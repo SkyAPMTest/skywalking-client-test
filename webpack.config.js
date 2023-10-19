@@ -24,7 +24,6 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: 'Client Monitor',
@@ -42,7 +41,7 @@ module.exports = {
         changeOrigin: true,
       },
     },
-    contentBase: './dist',
+    static: false,
     hot: false,
   }
 };
