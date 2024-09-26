@@ -14,8 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// import ClientMonitor from '../node_modules/skywalking-client-js/src/index';
-import ClientMonitor from 'skywalking-client-js';
+import ClientMonitor from '../node_modules/skywalking-client-js/src/index';
+// import ClientMonitor from 'skywalking-client-js';
 import Vue from 'vue';
 
 ClientMonitor.register({

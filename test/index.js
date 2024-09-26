@@ -22,7 +22,7 @@ ClientMonitor.register({
     pagePath: 'index.html',
     serviceVersion: 'v1.0.0',
     vue: Vue,
-    useFmp: true
+    // useFmp: true
 });
 
 // vue error
