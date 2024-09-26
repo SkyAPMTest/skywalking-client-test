@@ -22,8 +22,8 @@ ClientMonitor.register({
   service: 'test-ui',
   pagePath: 'index.html',
   serviceVersion: 'v1.0.0',
-  vue: Vue,
-  useFmp: true
+  useCoreWebVitals: false,
+  useFmp: false,
 });
 // // promise error
 function foo() {
@@ -34,7 +34,11 @@ function foo() {
 }
 foo();
 
-fetch('http://example.com/movies')
+fetch(new Request('http://example.com/movies', {
+  headers: new Headers({
+    'Test': 'fine0830',
+  }),
+}))
   .then(function(response) {
     return response.json();
   })
@@ -124,19 +128,21 @@ xhr.onreadystatechange = function () {
 };
 xhr.send();
 
-fetch('/graphql', {
+const myRequest =  new Request('/graphql', {
   method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
+  headers: new Headers({
+    'Content-Type': 'application/json',
+    'Test': 'fine0830',
+  }),
   body: JSON.stringify({
     query: "query queryServices($duration: Duration!,$keyword: String!) {\n    services: getAllServices(duration: $duration, group: $keyword) {\n      key: id\n      label: name\n      group\n    }\n  }",
-    variables: {"duration":{"start":"2020-12-23 1503","end":"2020-12-23 1603","step":"MINUTE"},"keyword":""},
+    variables: {"duration":{"start":"2024-3-26 1503","end":"2024-3-26 1603","step":"MINUTE"},"keyword":""},
   })
-}).then((data) => {
-  console.log(data);
+});
+fetch(myRequest).then((data) => {
+  // console.log(data);
 })
 
 // js error
-const ss = null;
-ss.v;
+// const ss = null;
+// ss.v;
