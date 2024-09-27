@@ -24,10 +24,10 @@ jobs:
           CI: true
       - name: Create service with docker compose
         run: |
-          docker-compose -f test/all-in-one.yaml up -d
+          docker compose -f test/all-in-one.yaml up -d
           docker ps
           sleep 60
-          docker-compose -f test/all-in-one.yaml logs test-ui
+          docker compose -f test/all-in-one.yaml logs test-ui
       - name: Clean Up
         if: ${{ always() }}
-        run: docker-compose -f test/all-in-one.yaml down
+        run: docker compose -f test/all-in-one.yaml down
