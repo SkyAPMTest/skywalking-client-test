@@ -7,14 +7,14 @@ This project provides test [skywalking-client-js](https://github.com/apache/skyw
 
 The test project generates traffic automatically through `selenium`.
 
-**Requests: [docker](https://docs.docker.com/install/), [docker-compose](https://docs.docker.com/compose/install/).**
+**Requests: [docker](https://docs.docker.com/install/), [docker compose](https://docs.docker.com/compose/install/).**
 
 1. Run the SkyWalking and test project
 
 ```shell script
 npm run rebuild
 
-docker-compose -f test/all-in-one.yaml up -d
+docker compose -f test/all-in-one.yaml up -d
 ```
 
 2. Visit SkyWalking UI
@@ -25,5 +25,5 @@ docker-compose -f test/all-in-one.yaml up -d
 3. Remove container
 
 ```shell script
-docker-compose -f test/all-in-one.yaml down
+docker compose -f test/all-in-one.yaml down
 ```
