@@ -22,8 +22,7 @@ ClientMonitor.register({
   service: 'test-ui',
   pagePath: 'index.html',
   serviceVersion: 'v1.0.0',
-  useCoreWebVitals: false,
-  useFmp: false,
+  useWebVitals: true,
 });
 // // promise error
 function foo() {
