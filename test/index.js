@@ -21,9 +21,8 @@ ClientMonitor.register({
     service: 'test-ui',
     pagePath: 'index.html',
     serviceVersion: 'v1.0.0',
-    vue: Vue,
-    // useFmp: true
-});
+    useWebVitals: true,
+  });
 
 // vue error
 new Vue({
