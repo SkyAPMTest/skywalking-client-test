@@ -1,22 +1,10 @@
-/**
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-// import ClientMonitor from '../node_modules/skywalking-client-js/src/index';
-import ClientMonitor from 'skywalking-client-js';
-import Vue from 'vue';
+import './assets/main.css'
+import ClientMonitor from '../node_modules/skywalking-client-js/src/index'
+
+import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App).mount('#app')
 
 ClientMonitor.register({
   service: 'test-ui',
@@ -24,7 +12,7 @@ ClientMonitor.register({
   serviceVersion: 'v1.0.0',
   useWebVitals: true,
 });
-// // promise error
+// promise error
 function foo() {
   Promise.reject({
     message: 'promise test',
@@ -45,7 +33,7 @@ fetch(new Request('http://example.com/movies', {
     console.log(myJson);
   });
 
-// // ajax error
+// ajax error
 // function loadXMLDoc() {
 //   let xmlhttp;
 //   if (window.XMLHttpRequest) {
@@ -64,30 +52,6 @@ fetch(new Request('http://example.com/movies', {
 //   xmlhttp.send();
 // }
 // loadXMLDoc();
-
-// vue error
-new Vue({
-  methods: {
-    async click1() {
-      throw {message: 'async function error', stack: 'click1 error'};
-    },
-    async test() {
-      throw {
-        message: 'vue test',
-        stack: 'vue error'
-      }
-    }
-  },
-  created() {
-    this.test();
-    this.click1();
-  },
-  config: {
-    errorHandler(error) {
-      console.log(error);
-    }
-  }
-})
 
 // mock
 function timeout() {
