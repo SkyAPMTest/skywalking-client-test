@@ -1,5 +1,6 @@
 import './assets/main.css'
-import ClientMonitor from '../node_modules/skywalking-client-js/src/index'
+// import ClientMonitor from '../node_modules/skywalking-client-js/src/index'
+import ClientMonitor from 'skywalking-client-js'
 
 import { createApp } from 'vue'
 import App from './App.vue'
