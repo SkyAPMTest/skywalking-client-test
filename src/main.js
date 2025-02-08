@@ -22,18 +22,21 @@ function foo() {
 }
 foo();
 
-fetch(new Request('http://example.com/movies', {
-  headers: new Headers({
-    'Test': 'fine0830',
-  }),
-}))
+fetch(new URL('http://example.com/movies'))
   .then(function(response) {
     return response.json();
   })
   .then(function(myJson) {
     console.log(myJson);
   });
-
+fetch('http://provider:9091/info', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+}).then((data) => {
+  console.log(data.body);
+})
 // ajax error
 // function loadXMLDoc() {
 //   let xmlhttp;
