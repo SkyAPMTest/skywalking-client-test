@@ -19,6 +19,8 @@ http {
 
   index index.html;
 
+  include mime.types;
+  
   server {
     listen 80;
 
