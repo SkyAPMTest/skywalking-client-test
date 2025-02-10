@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   oap:
     image: apache/skywalking-oap-server:8.2.0-es7

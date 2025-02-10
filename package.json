@@ -13,7 +13,7 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "rebuild": "rm -rf ./node_modules && rm -rf ./dist && npm install && webpack",
+    "rebuild": "rm -rf ./node_modules && rm -rf ./dist && npm install && npm run build",
     "server": "node server.js"
   },
   "devDependencies": {
