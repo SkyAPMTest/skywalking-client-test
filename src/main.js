@@ -22,6 +22,15 @@ function foo() {
 }
 foo();
 
+fetch('/projectA/test', {
+  method: 'GET',
+  headers: {
+      'Content-Type': 'application/json'
+  },
+}).then((data) => {
+  console.log(data.body);
+})
+
 fetch(new URL('http://example.com/movies'))
   .then(function(response) {
     return response.json();

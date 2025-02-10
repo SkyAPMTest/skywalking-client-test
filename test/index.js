@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 import ClientMonitor from 'skywalking-client-js';
-import Vue from 'vue';
 
 ClientMonitor.register({
     service: 'test-ui',
@@ -24,20 +23,14 @@ ClientMonitor.register({
     useWebVitals: true,
   });
 
-// vue error
-new Vue({
-    methods: {
-        test() {
-            throw {
-                msg: 'vue error',
-                status: 3000
-            }
-        }
-    },
-    created() {
-        this.test();
-    }
-})
+// promise error
+function foo() {
+    Promise.reject({
+      message: 'promise test',
+      stack: 'promise error'
+    });
+  }
+  foo();
 
 fetch('/projectA/test', {
     method: 'GET',

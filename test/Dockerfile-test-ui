@@ -4,8 +4,7 @@ WORKDIR /skywalking-client-test
 
 ADD . /skywalking-client-test
 
-RUN cp test/index.js src/index.js \
-    && npm install \
+RUN npm install \
     && npm run build
 
 FROM nginx:1.19
