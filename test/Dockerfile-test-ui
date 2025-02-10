@@ -9,7 +9,7 @@ RUN npm install \
 
 FROM nginx:1.19
 
-COPY --from=builder /skywalking-client-test/dist/* /etc/nginx/html/
+COPY --from=builder /skywalking-client-test/dist/ /etc/nginx/html/
 COPY test/docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN chmod +x /docker-entrypoint.sh
